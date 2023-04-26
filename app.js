@@ -1,25 +1,31 @@
-var friends = ["Meco", "Trey", "DeAmber", "Thomas", "Damion"];
-
+let friends = ["Meco", "Trey", "DeAmber", "Thomas", "Damion"];
 function singSong() {
-  for(var i = 99; i >= 0; i-- ) {
-    var friendDiv = document.createElement("div");
-    friendDiv.classList.add("friend");
-    var friendName = document.createElement("h3");
-    friendName.textContent = friends[i % friends.length];
-    friendDiv.appendChild(friendName);
-    var songLyrics = document.createElement("p");
 
-    if(i === 0) {
-      songLyrics.textContent = "No more lines of code in the file";
-    } else if(i === 1) {
-      songLyrics.textContent = "1 line of code in the file,\n1 line of code;\n" + friends[i % friends.length] + " strikes one out,\nclears it all out,\nNo more lines of code in the file";
-    } else {
-      songLyrics.textContent = i + " lines of code in the file,\n" + i + " lines of code;\n" + friends[i % friends.length] + " strikes one out,\nclears it all out,\n" + (i - 1) + " lines of code in the file";
+for (let j = 0; j < friends.length; j++) {
+
+  let friendDiv = document.createElement("div");
+  friendDiv.setAttribute("id", "friend");
+  document.body.appendChild(friendDiv);
+
+    for (let i = 99; i >= 0; i--) {
+      let para = document.createElement("p");
+      let node;
+      if (i === 0) {
+        node = document.createTextNode("No more lines of code in the file");
+      } else if (i === 1) {
+        node = document.createTextNode("1 line of code in the file");
+      } else {
+        node = document.createTextNode(i + " lines of code in the file");
+      }
+      para.appendChild(node);
+      document.getElementById("friend").appendChild(para);
+      let para2 = document.createElement("p");
+      let node2 = document.createTextNode(i + " lines of code in a file. "+ i + " lines of code; " + friends[i % friends.length] + " strickes one out, clears it all out. ");
+      para2.appendChild(node2);
+      document.getElementById("friend").appendChild(para2);
     }
-    friendDiv.appendChild(songLyrics);
-    document.body.appendChild(friendDiv);
   }
 }
 
-var singButton = document.getElementById("singButton");
+let singButton = document.getElementById("singButton");
 singButton.addEventListener("click", singSong);
